@@ -21,7 +21,7 @@ contract DavidoConcert is ERC721, Soulbound {
     uint public totalTicketSold;
     uint public totalAmount;
     enum State {PRESALE, STARTED}
-    mapping (address => bool) whitelist;
+    mapping (address => bool) public whitelist;
     State public ConcertState;
 
     struct Ticket {
@@ -32,7 +32,6 @@ contract DavidoConcert is ERC721, Soulbound {
     Ticket[] public tickets;
 
     constructor(){
-        owner = msg.sender;
         ConcertState = State.PRESALE;
         _s = new Soulbound();
     }
@@ -40,7 +39,6 @@ contract DavidoConcert is ERC721, Soulbound {
     function buyTicket() external payable { 
         require(totalTicketSold <=  MAX_TICKET, "Ticket has finished");
         require(msg.value >= TICKETPRICE, "Ticket Price is 0.5 ether");
-        require(block.timestamp <= endTime, "Ticket sales is over");
 
         if(ConcertState == State.PRESALE){
             require(whitelist[msg.sender] = true, "You are not Whitelisted");
@@ -58,6 +56,7 @@ contract DavidoConcert is ERC721, Soulbound {
             }
             
         }else{
+            require(block.timestamp <= endTime, "Ticket sales is over");
             uint remainingAmount =  msg.value - TICKETPRICE;
             Ticket memory ticket = Ticket(tickets.length, msg.sender, true);
             tickets.push(ticket);
