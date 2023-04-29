@@ -24,6 +24,7 @@ contract DavidoConcert {
     struct Ticket {
         uint id;
         address guest;
+        bool sold;
     }
     Ticket[] public tickets;
 
@@ -36,10 +37,17 @@ contract DavidoConcert {
         ConcertState = State.PRESALE;
     }
 
-    function buyTicket() public {
-        // if(ConcertState == State.PRESALE){
-
-        // }
+    function buyTicket() public payable { 
+        if(ConcertState == State.PRESALE){
+            require(whitelist[msg.sender] = true, "You are not Whitelisted");
+            require(tickets.length <=  PRE_SALE_TICKETS, "First 200 exceeded");
+            require(msg.value >= TICKETPRICE, "Ticket Price is 0.5 ether");
+            
+            uint remainingAmount =  msg.value - TICKETPRICE;
+            Ticket memory ticket = Ticket(tickets.length, msg.sender, true);
+            tickets.push(ticket);
+            payable(msg.sender).transfer(remainingAmount);
+        }
     }
     function addWhitelist (address [] calldata _guests) public onlyOwner {
         for(uint i = 0; i < _guests.length; i++){
