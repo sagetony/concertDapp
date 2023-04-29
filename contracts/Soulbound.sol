@@ -11,12 +11,10 @@ contract Soulbound is ERC721{
     constructor () ERC721 ("SOULBOUNDTOKEN", "SBT"){
         owner = msg.sender;
     }
-
     modifier onlyOwner () {
         require(msg.sender == owner, "Only owner has permission");
         _;
     }
-    
     function mintToken(address _to) external onlyOwner returns (uint256){
         require (nftCount < SUPPLY, "Maximum supply reached");
         nftCount++;
