@@ -1,13 +1,3 @@
-# Sample Hardhat Project
+# A Dapp for Davido Concert Ticket Sales
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
-
-Try running some of the following tasks:
-
-```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat run scripts/deploy.js
-```
+This is a smart contract that sells a ticket for Davido music concert. The ticket will be sold for 10 days and we limited tickets of 1000. The first 200 have a pre-sale allowed under whitelist, and the first 20 will receive a soulbound token.
