@@ -10,7 +10,7 @@ contract DavidoConcert is ERC721 {
     // Price is same for all, set a default price. Payment in Eth for minting of tickets.
     // The contract should be killed and the funds raised returned to owner when done.
 
-    Soulbound _s;
+    SoulboundToken _s;
 
     uint16 public constant MAX_TICKET = 1000;
     uint8 public constant PRE_SALE_TICKETS = 200;
@@ -38,7 +38,7 @@ contract DavidoConcert is ERC721 {
     Ticket[] public tickets;
 
     constructor() ERC721("DAVIDOTICKET", "DAVT"){
-        _s = new Soulbound();
+        _s = new SoulboundToken();
         owner = msg.sender;
     }
 
@@ -83,15 +83,18 @@ contract DavidoConcert is ERC721 {
     }
     function addWhitelist (address [] calldata _guests) external onlyOwner {
         uint256 length =  _guests.length;
-        require(length < PRE_SALE_TICKETS, "Tickets can be more than 200");
+        require(whitelisted < PRE_SALE_TICKETS, "Tickets can be more than 200");
 
         for(uint i = 0; i < length; i++){
             whitelist[_guests[i]] = true;
         }
+        whitelisted += length;
     }
 
     function removeWhitedAddress (address _guest) external onlyOwner{
         whitelist[_guest] = false;
+        whitelisted - 1;
+
     }
 
     function startProperSales() external onlyOwner {
