@@ -3,7 +3,7 @@ pragma solidity 0.8.18;
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "./Soulbound.sol";
 
-contract DavidoConcert is Soulbound {
+contract DavidoConcert is ERC721 {
     // Tickets can be bought till 1000 or after 10 days from the “startTime”.
     // The first 200 have a pre-sale allowed under whitelist.
     // The first 20 will receive a soulbound token minted directly from the contract.
@@ -17,6 +17,7 @@ contract DavidoConcert is Soulbound {
     uint8 public constant SOULBOUND_TOKENS = 20;
     uint64 public constant TICKETPRICE = 0.5 ether;
 
+    address owner;
     uint256 public startTime;
     uint256 public endTime;
 
@@ -36,8 +37,14 @@ contract DavidoConcert is Soulbound {
     }
     Ticket[] public tickets;
 
-    constructor(){
+    constructor() ERC721("DAVIDOTICKET", "DAVT"){
         _s = new Soulbound();
+        owner = msg.sender;
+    }
+
+    modifier onlyOwner () {
+        require(msg.sender == owner, "Only owner has permission");
+        _;
     }
 
     function buyTicket() external payable { 
@@ -53,7 +60,7 @@ contract DavidoConcert is Soulbound {
             Ticket memory ticket = Ticket(tickets.length, msg.sender, true);
             tickets.push(ticket);
             payable(msg.sender).transfer(remainingAmount);
-            // _s.mintTicket(msg.sender);
+            _mint(msg.sender, tickets.length);
             totalTicketSold++;
             totalAmount += TICKETPRICE;
             guests[msg.sender] = true;
@@ -67,7 +74,7 @@ contract DavidoConcert is Soulbound {
             Ticket memory ticket = Ticket(tickets.length, msg.sender, true);
             tickets.push(ticket);
             payable(msg.sender).transfer(remainingAmount);
-            // _mint(msg.sender, tickets.length);
+            _mint(msg.sender, tickets.length);
             totalTicketSold++;
             totalAmount += TICKETPRICE;
             guests[msg.sender] = true;
