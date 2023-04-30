@@ -11,4 +11,6 @@ To install and run the application, follow these steps:
 * Run npm run compile to compile the smart contracts
 * Run npm run deploy to deploy the contracts to the local blockchain
 
+## Link of the verified contract
+https://mumbai.polygonscan.com/address/0x6dd5318bc2d264606fa48ec83ca56d01b68b8306
 
