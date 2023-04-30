@@ -1,9 +1,9 @@
-// SPDX-License-Identifier: SEE LICENSE IN LICENSE
+//SPDX-License-Identifier: UNLICENSED
 pragma solidity 0.8.18;
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "./Soulbound.sol";
 
-contract DavidoConcert is ERC721, Soulbound {
+contract DavidoConcert is Soulbound {
     // Tickets can be bought till 1000 or after 10 days from the “startTime”.
     // The first 200 have a pre-sale allowed under whitelist.
     // The first 20 will receive a soulbound token minted directly from the contract.
@@ -53,7 +53,7 @@ contract DavidoConcert is ERC721, Soulbound {
             Ticket memory ticket = Ticket(tickets.length, msg.sender, true);
             tickets.push(ticket);
             payable(msg.sender).transfer(remainingAmount);
-            _mint(msg.sender, tickets.length);
+            // _s.mintTicket(msg.sender);
             totalTicketSold++;
             totalAmount += TICKETPRICE;
             guests[msg.sender] = true;
@@ -67,7 +67,7 @@ contract DavidoConcert is ERC721, Soulbound {
             Ticket memory ticket = Ticket(tickets.length, msg.sender, true);
             tickets.push(ticket);
             payable(msg.sender).transfer(remainingAmount);
-            _mint(msg.sender, tickets.length);
+            // _mint(msg.sender, tickets.length);
             totalTicketSold++;
             totalAmount += TICKETPRICE;
             guests[msg.sender] = true;
