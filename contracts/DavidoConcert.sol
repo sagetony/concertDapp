@@ -1,7 +1,7 @@
 //SPDX-License-Identifier: UNLICENSED
 pragma solidity 0.8.18;
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "./Soulbound.sol";
+import "./SoulboundToken.sol";
 
 contract DavidoConcert is ERC721 {
     // Tickets can be bought till 1000 or after 10 days from the “startTime”.
@@ -17,11 +17,11 @@ contract DavidoConcert is ERC721 {
     uint8 public constant SOULBOUND_TOKENS = 20;
     uint64 public constant TICKETPRICE = 0.5 ether;
 
-    address owner;
+    address public owner;
     uint256 public startTime;
     uint256 public endTime;
 
-    uint8 internal whitelisted;
+    uint256 internal whitelisted;
     uint16 public totalTicketSold;
     uint72 public totalAmount;
     

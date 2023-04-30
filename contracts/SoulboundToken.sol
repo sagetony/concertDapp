@@ -7,14 +7,15 @@ contract SoulboundToken is ERC721{
 
     uint8 public constant SOULBOUND_SUPPLY = 20;
 
-    address public owner;
+    address public admin;
     uint8 public soulboundCount;
 
     constructor () ERC721 ("SOULBOUNDTOKEN", "SBT"){
-        owner = msg.sender;
+        admin = msg.sender;
     }
+
     modifier onlyOwner () {
-        require(msg.sender == owner, "Only owner has permission");
+        require(msg.sender == admin, "Only owner has permission");
         _;
     }
     function mintToken(address _to) external onlyOwner returns (uint256){
@@ -26,19 +27,16 @@ contract SoulboundToken is ERC721{
     }
 
     function approve(address to, uint256 tokenId) public override {}
-    function getApproved(uint256 tokenId) public view override returns (address) {}
     function setApprovalForAll(address operator, bool approved) public override {}
     function transferFrom(address from, address to, uint256 tokenId) public override {}
     function safeTransferFrom(address from, address to, uint256 tokenId) public override {}
     function safeTransferFrom(address from, address to, uint256 tokenId, bytes memory data) public override {}
-    function _approve(address to, uint256 tokenId) internal override(ERC721) {}
+    function _approve(address to, uint256 tokenId) internal override{}
     function _safeTransfer(address from, address to, uint256 tokenId, bytes memory data) internal override {}
     function _safeMint(address to, uint256 tokenId) internal override {}
     function _transfer(address from, address to, uint256 tokenId) internal override {}
     function _setApprovalForAll(address owner, address operator, bool approved) internal override {}
     function _afterTokenTransfer(address from, address to, uint256 firstTokenId, uint256 batchSize) internal override {}
-    function _burn(uint256 tokenId) internal override(ERC721) {}    
-    function _beforeTokenTransfer(address from, address to, uint256 tokenId, uint256 batchSize) internal override(ERC721) {}
-    function __unsafe_increaseBalance(address account, uint256 amount) internal override {}
-
+    function _burn(uint256 tokenId) internal override {}    
+    function _beforeTokenTransfer(address from, address to, uint256 tokenId, uint256 batchSize) internal override {}
 }
