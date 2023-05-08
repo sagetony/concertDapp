@@ -4,11 +4,14 @@ import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "./SoulboundToken.sol";
 
 contract DavidoConcert is ERC721 {
-    // Tickets can be bought till 1000 or after 10 days from the “startTime”.
-    // The first 200 have a pre-sale allowed under whitelist.
-    // The first 20 will receive a soulbound token minted directly from the contract.
-    // Price is same for all, set a default price. Payment in Eth for minting of tickets.
-    // The contract should be killed and the funds raised returned to owner when done.
+    /**
+    * @dev
+    * Tickets can be bought till 1000 or after 10 days from the “startTime”.
+    * The first 200 have a pre-sale allowed under whitelist.
+    * The first 20 will receive a soulbound token minted directly from the contract.
+    * Price is same for all, set a default price. Payment in Eth for minting of tickets.
+    * The contract should be killed and the funds raised returned to owner when done.
+    */
 
     SoulboundToken _s;
 
