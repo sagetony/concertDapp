@@ -58,7 +58,7 @@ contract DavidoConcert is ERC721 {
         uint256 remainingAmount =  msg.value - TICKETPRICE;
 
         if(ConcertState == State.PRESALE){
-            require(whitelist[msg.sender] = true, "You are not Whitelisted");
+            require(whitelist[msg.sender] == true, "You are not Whitelisted");
             require(tickets.length <  PRE_SALE_TICKETS, "First 200 exceeded");
             Ticket memory ticket = Ticket(tickets.length, msg.sender, true);
             tickets.push(ticket);
