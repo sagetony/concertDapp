@@ -1,25 +1,10 @@
-import { ethers } from "ethers";
 import React from "react";
-import { useCallback } from "react";
-import { useEffect } from "react";
-import { useState } from "react";
 import { Button } from "react-bootstrap";
 
-const Banner = ({}) => {
-  //   const loadsageDefi = useCallback(async () => {
-  //     const tokenSymbol = await sagetoken.symbol();
-  //     setSymbol(tokenSymbol);
-
-  //     const tokenAmount = (await sageico.getTokenAmount()).toString();
-  //     setTokenamount(ethers.utils.formatEther(tokenAmount));
-
-  //     const totalToken = (await sageico.getTokenPurchase()).toString();
-  //     setTotaltoken(totalToken.toString());
-  //   }, [sagetoken, sageico]);
-
-  //   useEffect(() => {
-  //     loadsageDefi();
-  //   }, [loadsageDefi]);
+const Banner = ({ davidoconcert }) => {
+  const loadsageDefi = async () => {
+    await davidoconcert.buyTicket();
+  };
 
   return (
     <div>
@@ -50,7 +35,7 @@ const Banner = ({}) => {
                   The Biggest Music
                   <span> Event of the </span> Year
                 </h2>
-                <Button>Buy Ticket </Button>
+                <Button onClick={loadsageDefi}>Buy Ticket </Button>
               </div>
             </div>
           </div>

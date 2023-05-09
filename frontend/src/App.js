@@ -9,7 +9,7 @@ import { useCallback, useEffect, useState } from "react";
 
 function App() {
   const [account, setAccount] = useState(null);
-  // const [davidoconcert, setDavidoConcert] = useState(null);
+  const [davidoconcert, setDavidoConcert] = useState(null);
 
   const WebHandler = useCallback(async () => {
     // get the account in metamask
@@ -17,7 +17,6 @@ function App() {
     const accounts = await window.ethereum.request({
       method: "eth_requestAccounts",
     });
-    console.log("accounts");
     setAccount(accounts[0]);
     // Get the provider from Metamask
     const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -32,12 +31,12 @@ function App() {
     });
 
     // get contracts
-    // const davidoconcertcontract = new ethers.Contract(
-    //   DavidoConcertAddress.address,
-    //   DavidoConcertAbi.abi,
-    //   signer
-    // );
-    // setDavidoConcert(davidoconcertcontract);
+    const davidoconcertcontract = new ethers.Contract(
+      DavidoConcertAddress.address,
+      DavidoConcertAbi.abi,
+      signer
+    );
+    setDavidoConcert(davidoconcertcontract);
   }, [account]);
 
   useEffect(() => {
@@ -47,7 +46,7 @@ function App() {
   return (
     <div>
       <Header WebHandler={WebHandler} account={account} />
-      <Banner />
+      <Banner davidoconcert={davidoconcert} />
       <Footer />
     </div>
   );
