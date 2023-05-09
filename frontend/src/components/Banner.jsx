@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 
 const Banner = ({ davidoconcert }) => {
   const [address, setAddress] = useState(null);
@@ -8,11 +8,14 @@ const Banner = ({ davidoconcert }) => {
     await davidoconcert.buyTicket();
   };
 
-  const handleChange = (event) => {
-    setAddress = event.target.value;
+  const handleChange = async (event) => {
+    setAddress(event.target.value);
   };
-  const verifyUser = async () => {
-    await davidoconcert.whitelist();
+  const verifyUser = async (event) => {
+    event.preventDefault();
+    console.log("dsd");
+    const result = await davidoconcert.whitelist(address);
+    console.log(result);
   };
   return (
     <div>
@@ -52,7 +55,7 @@ const Banner = ({ davidoconcert }) => {
               <div className="banner-content text-center">
                 <img src="assets/img/banner/featured-1.jpg" alt="" />
                 <h4>Check Address For Whitelist</h4>
-                <form onSubmit={verifyUser}>
+                <Form onSubmit={verifyUser}>
                   <div className="mt-3 mb-3">
                     <input
                       type="text"
@@ -62,7 +65,7 @@ const Banner = ({ davidoconcert }) => {
                     />
                   </div>
                   <Button type="submit">Check Address</Button>
-                </form>
+                </Form>
               </div>
             </div>
           </div>
