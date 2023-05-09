@@ -13,11 +13,7 @@ function App() {
 
   const WebHandler = useCallback(async () => {
     // get the account in metamask
-    console.log(
-      await window.ethereum.request({
-        method: "eth_requestAccounts",
-      })
-    );
+
     const accounts = await window.ethereum.request({
       method: "eth_requestAccounts",
     });
