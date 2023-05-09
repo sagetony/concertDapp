@@ -13,9 +13,18 @@ const Banner = ({ davidoconcert }) => {
   };
   const verifyUser = async (event) => {
     event.preventDefault();
-    console.log("dsd");
     const result = await davidoconcert.whitelist(address);
-    console.log(result);
+
+    if (result == false) {
+      alert("You are not Whitelisted");
+      setAddress("");
+    } else if (result == true) {
+      alert("You are Whitelisted");
+      setAddress("");
+    } else {
+      alert("Contact Organizers");
+      setAddress("");
+    }
   };
   return (
     <div>
