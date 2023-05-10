@@ -54,7 +54,7 @@ const Banner = ({ davidoconcert }) => {
           <div className="row justify-content-center">
             <div className="col-lg-10">
               <div className="banner-content text-center">
-                <img src="assets/img/banner/featured-1.jpg" alt="" />
+                <img src="assets/img/banner/davidoimage.PNG" alt="" />
                 <h2 className="title">
                   The Biggest Music
                   <span> Event of the </span> Year
