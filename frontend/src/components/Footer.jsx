@@ -125,7 +125,7 @@ const Footer = ({}) => {
                   <div className="copyright-text">
                     <p>
                       Copyright &copy; {new Date().getFullYear()}. All Rights
-                      Reserved SageDefi
+                      Reserved DavidoConcert
                     </p>
                   </div>
                 </div>
