@@ -21,7 +21,7 @@ const Footer = ({}) => {
                   >
                     <a href="#d" className="f-logo">
                       {/* <img src={logo} alt="" /> */}
-                      <h2>Concert Ticket Sales</h2>
+                      <h2>Davido Ticket Sales</h2>
                     </a>
                     <div className="footer-content">
                       <ul className="footer-social">

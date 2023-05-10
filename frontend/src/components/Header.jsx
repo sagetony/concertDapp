@@ -21,7 +21,7 @@ function Header({ WebHandler, account }) {
                     <div className="logo">
                       <a href="/">
                         {/* <img src={logo} alt="lOGO" /> */}
-                        <h2>Concert Ticket</h2>
+                        <h2>Davido Concert</h2>
                       </a>
                     </div>
                     <div className="navbar-wrap main-menu d-lg-flex">
