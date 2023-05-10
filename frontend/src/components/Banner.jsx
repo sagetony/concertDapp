@@ -3,9 +3,14 @@ import { Button, Form } from "react-bootstrap";
 
 const Banner = ({ davidoconcert }) => {
   const [address, setAddress] = useState(null);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const loadsageDefi = async () => {
-    await davidoconcert.buyTicket();
+    try {
+      await davidoconcert.buyTicket();
+    } catch (error) {
+      alert(`${error.code} Ticket Price is 0.5 ether`);
+    }
   };
 
   const handleChange = async (event) => {
@@ -56,6 +61,7 @@ const Banner = ({ davidoconcert }) => {
                   <span> Event of the </span> Year
                 </h2>
                 <Button onClick={loadsageDefi}>Buy Ticket </Button>
+                {errorMessage && <div>Error: {errorMessage}</div>}
               </div>
             </div>
           </div>
