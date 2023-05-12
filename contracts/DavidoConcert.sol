@@ -6,6 +6,8 @@ import "./SoulboundToken.sol";
 contract DavidoConcert is ERC721 {
     /**
     * @dev
+    * @author Uchechukwu Anthony (github.com/sagetony)
+    * @dev
     * Tickets can be bought till 1000 or after 10 days from the “startTime”.
     * The first 200 have a pre-sale allowed under whitelist.
     * The first 20 will receive a soulbound token minted directly from the contract.
